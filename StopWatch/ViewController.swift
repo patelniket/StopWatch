@@ -49,27 +49,20 @@ class ViewController: UIViewController {
         minutes = Int(seconds/60)
         hours = Int(minutes/60)
         
+        var nf = NSNumberFormatter()
+        nf.minimumIntegerDigits = 2
+        
         var secondsDeduction = milliseconds - (seconds * 100)
         var minuteDeduction = seconds - (minutes * 60)
         var hourDeduction = minutes - (hours * 60)
         
         if minutes > 59 {
-            timerDisplay.text = "\(doubleDigitFormatter(hours)):\(doubleDigitFormatter(hourDeduction)):\(doubleDigitFormatter(minuteDeduction)):\(doubleDigitFormatter(secondsDeduction))"
+            timerDisplay.text = "\(nf.stringFromNumber(hours)!):\(nf.stringFromNumber(hourDeduction)!):\(nf.stringFromNumber(minuteDeduction)!):\(nf.stringFromNumber(secondsDeduction)!)"
         } else if seconds > 59 {
-            timerDisplay.text = "\(doubleDigitFormatter(minutes)):\(doubleDigitFormatter(minuteDeduction)):\(doubleDigitFormatter(secondsDeduction))"
+            timerDisplay.text = "\(nf.stringFromNumber(minutes)!):\(nf.stringFromNumber(minuteDeduction)!):\(nf.stringFromNumber(secondsDeduction)!)"
         } else {
-            timerDisplay.text = "\(doubleDigitFormatter(minutes)):\(doubleDigitFormatter(seconds)):\(doubleDigitFormatter(secondsDeduction))"
+            timerDisplay.text = "\(nf.stringFromNumber(minutes)!):\(nf.stringFromNumber(seconds)!):\(nf.stringFromNumber(secondsDeduction)!)"
         }
-    }
-    
-    
-    func doubleDigitFormatter(input:Int) -> String {
-        if input < 10 {
-            return("0\(input)")
-        } else {
-            return("\(input)")
-        }
-        
     }
     
     override func viewDidLoad() {
