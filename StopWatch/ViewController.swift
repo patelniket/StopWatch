@@ -53,13 +53,12 @@ class ViewController: UIViewController {
         var minuteDeduction = seconds - (minutes * 60)
         var hourDeduction = minutes - (hours * 60)
         
-        if seconds > 59 {
-            if minutes > 59 {
-                timerDisplay.text = "\(doubleDigitFormatter(hours)):\(doubleDigitFormatter(hourDeduction)):\(minuteDeduction):\(secondsDeduction)"
-            }
+        if minutes > 59 {
+            timerDisplay.text = "\(doubleDigitFormatter(hours)):\(doubleDigitFormatter(hourDeduction)):\(doubleDigitFormatter(minuteDeduction)):\(doubleDigitFormatter(secondsDeduction))"
+        } else if seconds > 59 {
             timerDisplay.text = "\(doubleDigitFormatter(minutes)):\(doubleDigitFormatter(minuteDeduction)):\(doubleDigitFormatter(secondsDeduction))"
         } else {
-            timerDisplay.text = "\(doubleDigitFormatter(minutes)):\(doubleDigitFormatter(minuteDeduction)):\(doubleDigitFormatter(secondsDeduction))"
+            timerDisplay.text = "\(doubleDigitFormatter(minutes)):\(doubleDigitFormatter(seconds)):\(doubleDigitFormatter(secondsDeduction))"
         }
     }
     
